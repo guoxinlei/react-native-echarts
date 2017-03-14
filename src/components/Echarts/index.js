@@ -61,11 +61,8 @@ var a=e.getData();r.each(n,function(t){t.scale.unionExtent(a.getDataExtent(t.dim
   </head>
 
   <body>
-      <div>ECharts-Full</div>
     <div id="main" ></div>
-    <script>`;
-var source2 = `</script>
-     <div>ECharts-Full</div>
+    <script></script>
   <body>
 <html>`;
 
@@ -77,29 +74,9 @@ export default class App extends Component {
     }
 
     render() {
-        var renderC = renderChart(this.props)
-        let htmlpath;
-        htmlpath = {
-            html: source + renderC + source2
+        var htmlpath = {
+            html: source
         };
-        console.log(htmlpath.html)
-        // if (__DEV__) {
-        //     htmlpath = require('./tpl.html')
-        // } else if ( Platform.OS === 'ios') {
-        //     htmlpath = {
-        //         html: source
-        //     };
-        // } else {
-        //     htmlpath ={
-        //         uri: 'file:///android_asset/web/echarts.html'
-        //     }
-        // }
-
-        // console.log('renderC:'+renderC)
-        // console.log(source);
-        // var full = source + renderC + source2
-        // console.log("full:" + full)
-        // alert(renderC);
         return (
             <View style={{
                 flex: 1,
@@ -107,7 +84,7 @@ export default class App extends Component {
             }}>
                 <WebView ref="chart" scrollEnabled={false} javaScriptEnabled={true} style={{
                     height: this.props.height || 400
-                }} source={htmlpath} javaScriptEnabledAndroid={true}/>
+                }} source={htmlpath}  injectedJavaScript = {renderChart(this.props)}/>
             </View>
         );
     }
